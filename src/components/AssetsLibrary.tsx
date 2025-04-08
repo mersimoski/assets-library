@@ -62,7 +62,7 @@ const AssetsLibrary: React.FC = () => {
 
         <div
           ref={dropRef}
-          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
+          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] max-h-[350px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
             }`}
         >
           {/* Plus card */}
@@ -70,7 +70,7 @@ const AssetsLibrary: React.FC = () => {
             onClick={() => openModalForZone(zone)}
             className="border-2 border-dashed border-zinc-600 rounded-xl w-full aspect-square flex items-center justify-center text-white hover:border-orange-400 hover:bg-orange-950/20 transition"
           >
-            <span className="text-3xl">+</span>
+            <span className="text-3xl"><AddCircle className='fill-white w-6 h-6' /></span>
           </button>
 
           {/* Asset cards */}
@@ -84,20 +84,9 @@ const AssetsLibrary: React.FC = () => {
 
 
   return (
-    <div className="bg-[#373737] w-screen p-6 rounded-2xl min-h-screen text-white">
+    <div className="bg-[#373737] w-screen p-6 min-h-screen text-white">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Assets</h1>
-        <select
-          className="p-2 px-4 rounded-lg bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value as 'all' | AssetType)}
-        >
-          {Filters.map((f) => (
-            <option key={f} value={f}>
-              {f === 'all' ? 'All' : f[0].toUpperCase() + f.slice(1) + 's'}
-            </option>
-          ))}
-        </select>
       </div>
 
       {showModal && (
