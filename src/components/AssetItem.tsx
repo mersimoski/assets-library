@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 import { Asset } from '../types/Asset';
-import CloseIcon from '@material-symbols/svg-400/outlined/close-fill.svg?react';
+import CloseIcon from '@material-symbols/svg-400/outlined/close_small.svg?react';
 import Image from '@material-symbols/svg-400/outlined/image.svg?react';
 
 export const ItemTypes = {
@@ -22,13 +22,13 @@ const AssetItem: React.FC<AssetItemProps> = ({ asset, onDelete }) => {
     return (
         <div
             ref={dragRef}
-            className="relative border border-zinc-700 rounded-xl p-3 bg-zinc-800 text-white flex flex-col gap-2 shadow hover:shadow-lg transition duration-200 max-h-[360px]"
+            className="relative border border-zinc-700 rounded-xl p-3 bg-zinc-800 text-white flex flex-col gap-2 shadow hover:shadow-lg transition duration-200"
         >
             {asset.type === 'image' && (
                 <img
                     src={asset.src}
                     alt={asset.name}
-                    className="w-full h-full max-h-[300px] object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-lg"
                 />
             )}
             {asset.type === 'audio' && (
@@ -54,7 +54,7 @@ const AssetItem: React.FC<AssetItemProps> = ({ asset, onDelete }) => {
                     className="absolute top-1.5 right-1.5 bg-red-600 hover:bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
                     onClick={() => onDelete(asset.id)}
                 >
-                   x
+                    x
                 </button>
             )}
         </div>

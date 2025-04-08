@@ -10,9 +10,12 @@ export const AssetsProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (stored) setAssetsState(JSON.parse(stored));
   }, []);
 
-  const setAssets = (newAssets: Asset[]) => {
-    setAssetsState(newAssets);
-    localStorage.setItem('assets', JSON.stringify(newAssets));
+  const setAssets = (newAssets: Asset[] | ((prev: Asset[]) => Asset[])) => {
+    setAssetsState((prev) => {
+      const updated = typeof newAssets === 'function' ? (newAssets as (prev: Asset[]) => Asset[])(prev) : newAssets;
+      localStorage.setItem('assets', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   return (

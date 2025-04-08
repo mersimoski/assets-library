@@ -33,10 +33,11 @@ const AssetsLibrary: React.FC = () => {
     const [{ isOver }, dropRef]: any = useDrop(() => ({
       accept: ItemTypes.ASSET,
       drop: (item: Asset) => {
-        const updated = assets.map((a) =>
-          a.id === item.id ? { ...a, source: zone } : a
+        setAssets((prevAssets) =>
+          prevAssets.map((a) =>
+            a.id === item.id ? { ...a, source: zone } : a
+          )
         );
-        setAssets(updated);
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
@@ -62,7 +63,7 @@ const AssetsLibrary: React.FC = () => {
 
         <div
           ref={dropRef}
-          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] max-h-[350px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
+          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
             }`}
         >
           {/* Plus card */}
@@ -96,7 +97,7 @@ const AssetsLibrary: React.FC = () => {
         />
       )}
 
-      <div className="space-y-12">
+      <div className="flex flex-col gap-20">
         {renderZone('source')}
         {renderZone('target')}
       </div>
