@@ -1,54 +1,116 @@
-# React + TypeScript + Vite
+# 🎨 Assets Library – Coding Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript + Vite application for managing and organizing media assets such as images, audio, and video. This app provides a clean and modern UI to drag-and-drop, upload, filter, and manage assets across two zones: **Source** and **Target**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+### ✅ Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16 or newer)
+- npm or yarn
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### ⚙️ Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/assets-library.git
+
+# Navigate to the project directory
+cd assets-library
+
+# Install dependencies
+npm install
+# or
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🧪 Run Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
+# or
+yarn dev
 ```
+
+App will be available at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## ✨ Features
+
+- 📁 **Drag & Drop Files from Desktop**: Drop images, audios, or videos directly into either zone.
+- ➕ **Add via Modal**: Use the plus (+) button to upload media with a file picker.
+- 📤 **Drag Between Zones**: Move assets between "Source" and "Target" using internal drag-and-drop.
+- 🎛 **Filtering by Type**: Show only images, audios, or videos using a dropdown filter per zone.
+- 🧹 **Delete Assets**: Remove any asset with the delete button.
+- 💾 **Persistence**: All assets are saved in `localStorage` using React Context API — your data stays even after refresh.
+- 🧠 **Global State**: Asset state is shared and managed with React Context API.
+- 📱 **Responsive UI**: Zones are horizontally scrollable on smaller screens for a mobile-friendly layout.
+- 🎨 **Modern Design**: Styled with TailwindCSS + Material Symbols icons.
+
+---
+
+## 🧩 Tech Stack
+
+- ✅ React 18
+- ✅ TypeScript
+- ✅ Vite
+- ✅ React DnD
+- ✅ TailwindCSS
+- ✅ Material Symbols Icons
+- ✅ Context API (for global state)
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+  ├── components/
+  │   ├── AssetsLibrary.tsx        # Main component with source/target zones
+  │   ├── AssetItem.tsx            # Individual asset card
+  │   ├── AddAssetModal.tsx        # Modal for uploading files
+  ├── context/
+  │   ├── AssetsContext.tsx        # Context definition
+  │   ├── AssetsProvider.tsx       # Context state + localStorage persistence
+  │   └── useAssets.ts             # Custom context hook
+  ├── dnd/
+  │   └── DnDProviderWrapper.tsx   # Drag-and-drop provider
+  ├── types/
+  │   └── Asset.ts                 # Asset interface/type definitions
+  ├── utils/
+  │   └── fileHelpers.ts           # Utility functions (optional)
+  ├── App.tsx                      # Entry component
+  ├── main.tsx                     # Vite entry file
+```
+
+---
+
+## 🧠 Challenge Requirements Checklist
+
+- [x] React app with TypeScript and Vite
+- [x] AssetsLibrary component with drag-and-drop and upload via plus button
+- [x] Separate zones for "Source" and "Target"
+- [x] Filtering by "All", "Images", "Audios", "Videos" using dropdown
+- [x] Use of Material Symbols icons: [@material-symbols/svg-400](https://www.npmjs.com/package/@material-symbols/svg-400)
+- [x] State persisted with Context API and localStorage
+- [x] Delete feature for assets
+- [x] Horizontal scroll support for responsive design
+- [x] Bonus: drag-and-drop assets between Source and Target
+
+---
+
+## 🖼 Preview
+
+> 📷 Add a screenshot here once available, like this:
+>
+> ![AssetsLibrary Screenshot](./public/assets-preview.png)
+
+---
+
+## 📄 License
+
+This project is created for a coding challenge and demonstration purposes.
