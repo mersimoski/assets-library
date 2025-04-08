@@ -103,14 +103,6 @@ src/
 
 ---
 
-## 🖼 Preview
-
-> 📷 Add a screenshot here once available, like this:
->
-> ![AssetsLibrary Screenshot](./public/assets-preview.png)
-
----
-
 ## 📄 License
 
 This project is created for a coding challenge and demonstration purposes.
