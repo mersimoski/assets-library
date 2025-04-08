@@ -22,7 +22,7 @@ const AssetItem: React.FC<AssetItemProps> = ({ asset, onDelete }) => {
     return (
         <div
             ref={dragRef}
-            className="relative border border-zinc-700 rounded-xl p-3 bg-zinc-800 text-white flex flex-col gap-2 shadow hover:shadow-lg transition duration-200"
+            className="w-36 min-h-50 flex-shrink-0 relative border border-zinc-700 rounded-xl p-3 bg-zinc-800 text-white flex flex-col gap-2 shadow hover:shadow-lg transition duration-200"
         >
             {asset.type === 'image' && (
                 <img
@@ -35,7 +35,7 @@ const AssetItem: React.FC<AssetItemProps> = ({ asset, onDelete }) => {
                 <audio
                     controls
                     src={asset.src}
-                    className="w-full rounded-lg bg-zinc-900"
+                    className="w-full h-full rounded-lg bg-zinc-900"
                 />
             )}
             {asset.type === 'video' && (

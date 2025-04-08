@@ -110,12 +110,13 @@ const AssetsLibrary: React.FC = () => {
           ref={dropRef}
           onDrop={handleFileDrop}
           onDragOver={(e) => e.preventDefault()}
-          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'}`}
+          className={`flex overflow-x-auto space-x-4 p-2 rounded-xl min-h-[120px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
+            }`}
         >
           {/* Plus card */}
           <button
             onClick={() => openModalForZone(zone)}
-            className="border-2 border-dashed border-zinc-600 rounded-xl w-full aspect-square flex items-center justify-center text-white hover:border-orange-400 hover:bg-orange-950/20 transition"
+            className="w-36 flex-shrink-0 border-2 border-dashed border-zinc-600 rounded-xl aspect-square flex items-center justify-center text-white hover:border-orange-400 hover:bg-orange-950/20 transition"
           >
             <span className="text-3xl"><AddCircle className='fill-white w-6 h-6' /></span>
           </button>
@@ -131,7 +132,7 @@ const AssetsLibrary: React.FC = () => {
 
 
   return (
-    <div className="bg-[#373737] w-screen p-6 min-h-screen text-white">
+    <div className="bg-[#373737] w-screen p-6 min-h-screen text-white max-w-[1200px] lg:my-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Assets</h1>
       </div>
