@@ -12,7 +12,14 @@ const Filters: (AssetType | 'all')[] = ['all', 'image', 'audio', 'video'];
 
 const AssetsLibrary: React.FC = () => {
   const { assets, setAssets } = useAssets();
-  const [filter, setFilter] = useState<'all' | AssetType>('all');
+  const [zoneFilter, setZoneFilter] = useState<{
+    source: 'all' | AssetType;
+    target: 'all' | AssetType;
+  }>({
+    source: 'all',
+    target: 'all',
+  });
+
   const [showModal, setShowModal] = useState(false);
   const [currentZone, setCurrentZone] = useState<'source' | 'target'>('source');
 
@@ -26,6 +33,8 @@ const AssetsLibrary: React.FC = () => {
   };
 
   const renderZone = (zone: 'source' | 'target') => {
+    const filter = zoneFilter[zone];
+
     const zoneAssets = assets.filter(
       (a) => a.source === zone && (filter === 'all' || a.type === filter)
     );
@@ -50,8 +59,13 @@ const AssetsLibrary: React.FC = () => {
           <h2 className="text-lg font-semibold capitalize">{zone}</h2>
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value as 'all' | AssetType)}
-            className="bg-zinc-800 text-white  fill-white rounded px-2 py-1 text-sm"
+            onChange={(e) =>
+              setZoneFilter((prev) => ({
+                ...prev,
+                [zone]: e.target.value as 'all' | AssetType,
+              }))
+            }
+            className="bg-zinc-800 text-white fill-white rounded px-2 py-1 text-sm"
           >
             {Filters.map((f) => (
               <option key={f} value={f}>
