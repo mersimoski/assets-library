@@ -4,6 +4,8 @@ import { AssetType } from '../types/Asset';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './AssetItem';
 import { Asset } from '../types/Asset';
+import { v4 as uuid } from 'uuid';
+
 import AssetItem from './AssetItem';
 import AddAssetModal from './AddAssetModal';
 import AddCircle from '@material-symbols/svg-400/outlined/add_circle.svg?react';
@@ -53,6 +55,35 @@ const AssetsLibrary: React.FC = () => {
       }),
     }));
 
+    const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+
+      const files = Array.from(e.dataTransfer.files);
+      const newAssets: Asset[] = [];
+
+      for (const file of files) {
+        const type = file.type.startsWith('image')
+          ? 'image'
+          : file.type.startsWith('audio')
+            ? 'audio'
+            : 'video';
+
+        const newAsset: Asset = {
+          id: uuid(),
+          name: file.name,
+          src: URL.createObjectURL(file),
+          type,
+          source: zone,
+        };
+
+        newAssets.push(newAsset);
+      }
+
+      if (newAssets.length > 0) {
+        setAssets((prevAssets) => [...prevAssets, ...newAssets]);
+      }
+    };
+
     return (
       <div className="space-y-2">
         <div className="flex justify-between items-center">
@@ -77,8 +108,9 @@ const AssetsLibrary: React.FC = () => {
 
         <div
           ref={dropRef}
-          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'
-            }`}
+          onDrop={handleFileDrop}
+          onDragOver={(e) => e.preventDefault()}
+          className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2 rounded-xl min-h-[100px] transition border-2 border-dashed ${isOver ? 'border-orange-400 bg-orange-950/10' : 'border-transparent'}`}
         >
           {/* Plus card */}
           <button
